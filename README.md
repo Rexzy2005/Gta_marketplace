@@ -33,4 +33,4 @@ The next implementation boundary is the admin-managed data layer: authentication
 
 ## Extreme Programming workflow
 
-The implementation follows the acceptance criteria, iteration plan, and Definition of Done in [gta-legend-lane-xp-roadmap.md](gta-legend-lane-xp-roadmap.md). Each increment should select a small story slice, add focused tests, validate locally, and record the result under [docs/xp](docs/xp). The current increment is documented in [docs/xp/iteration-03.md](docs/xp/iteration-03.md), with the previous increment recorded in [docs/xp/iteration-02.md](docs/xp/iteration-02.md).
+The implementation follows the acceptance criteria, iteration plan, and Definition of Done in [gta-legend-lane-xp-roadmap.md](gta-legend-lane-xp-roadmap.md). Each increment should select a small story slice, add focused tests, validate locally, and record the result under [docs/xp](docs/xp). The current increment is documented in [docs/xp/iteration-04.md](docs/xp/iteration-04.md), with previous increments recorded in [docs/xp/iteration-03.md](docs/xp/iteration-03.md) and [docs/xp/iteration-02.md](docs/xp/iteration-02.md).
