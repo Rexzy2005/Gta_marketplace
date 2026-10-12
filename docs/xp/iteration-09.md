@@ -8,7 +8,7 @@ This increment starts **GL-023** with the smallest independently testable securi
 
 ## Small release
 
-The new `lib/admin-auth.ts` module creates salted scrypt password hashes, loads an administrator username and hash from environment configuration, and verifies credentials with constant-time key comparison. The new `lib/admin-session.ts` module adds an eight-hour HMAC-signed session token with expiry and tamper detection. Neither module exposes credentials to client code or claims that the admin route, cookie, logout, or route authorization is complete.
+The new `lib/admin-auth.ts` module creates salted scrypt password hashes, loads an administrator username and hash from environment configuration, and verifies credentials with constant-time key comparison. The new `lib/admin-session.ts` module adds an eight-hour HMAC-signed session token with expiry and tamper detection. Server-only login, logout, and session routes issue, clear, and verify an `HttpOnly` cookie without exposing credentials to client code.
 
 ## Acceptance checks
 
@@ -17,8 +17,11 @@ The new `lib/admin-auth.ts` module creates salted scrypt password hashes, loads 
 - Missing or malformed configuration fails closed without throwing.
 - The original password is never included in the stored hash.
 - Session tokens reject tampering, incorrect signing secrets, and expired payloads.
+- Valid credentials issue an `HttpOnly`, `SameSite=Strict` session cookie.
+- Invalid credentials, malformed requests, missing cookies, and invalid cookies fail without credential or session detail.
+- Logout clears the session cookie.
 - The environment example documents the required server-only variables.
 
 ## XP notes
 
-Tests were written first and confirmed red before each implementation was added, then passed as focused suites. The next slice should issue the session through a server-only login route, add logout, and protect an actual admin route before any catalogue mutations are introduced.
+Tests were written first and confirmed red before each implementation was added, then passed as focused suites. The next slice should use this boundary to protect the first database-backed admin read or mutation, with authorization tests at that route boundary.
