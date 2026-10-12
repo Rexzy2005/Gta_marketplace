@@ -26,7 +26,7 @@ Use the reference as a source of product direction and visual inspiration. Inspe
 
 ## 2. Development Approach: Extreme Programming (XP)
 
-The project should be developed using Extreme Programming practices. XP is useful here because it encourages short feedback loops, small releases, continuous testing, and close collaboration between the product owner and developers.
+The project should be developed using Extreme Programming practices. XP is useful here becaulse it encourages short feedback loops, small releases, continuous testing, and close collaboration between the product owner and developers.
 
 ### 2.1 XP Principles for This Project
 

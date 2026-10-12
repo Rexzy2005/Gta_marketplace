@@ -19,6 +19,26 @@ npm test
 npm run build
 ```
 
+Validate the persistence schema with a local or managed PostgreSQL URL:
+
+```bash
+cp .env.example .env
+npm run db:validate
+```
+
+`DATABASE_URL` is required for Prisma commands and must remain environment-only.
+
+Database workflow commands:
+
+```bash
+npm run db:generate
+npm run db:migrate
+npm run db:seed
+npm run db:deploy
+```
+
+Use `db:migrate` for local development and `db:deploy` in a controlled deployment environment. The seed only creates the four approved initial categories; it does not create catalogue listings or prices.
+
 ## Current implementation
 
 The public homepage currently uses clearly marked, non-production catalogue templates so no real products, prices, availability, testimonials, or seller destinations are invented. The interactive slice includes:
@@ -29,8 +49,8 @@ The public homepage currently uses clearly marked, non-production catalogue temp
 - listing brief modal with copy-to-clipboard behavior
 - mobile navigation and responsive layout
 
-The next implementation boundary is the admin-managed data layer: authentication, categories, listings, packages, exchange-rate source, and configured contact destinations should replace the local sample records before launch.
+The next implementation boundary is the admin-managed data layer: credential verification and signed session primitives are covered in [docs/xp/iteration-09.md](docs/xp/iteration-09.md), while a login/logout route, protected admin route, categories, listings, packages, exchange-rate source, and configured contact destinations still need to replace the local sample records before launch.
 
 ## Extreme Programming workflow
 
-The implementation follows the acceptance criteria, iteration plan, and Definition of Done in [gta-legend-lane-xp-roadmap.md](gta-legend-lane-xp-roadmap.md). Each increment should select a small story slice, add focused tests, validate locally, and record the result under [docs/xp](docs/xp). The current increment is documented in [docs/xp/iteration-04.md](docs/xp/iteration-04.md), with previous increments recorded in [docs/xp/iteration-03.md](docs/xp/iteration-03.md) and [docs/xp/iteration-02.md](docs/xp/iteration-02.md).
+The implementation follows the acceptance criteria, iteration plan, and Definition of Done in [gta-legend-lane-xp-roadmap.md](gta-legend-lane-xp-roadmap.md). Each increment should select a small story slice, add focused tests, validate locally, and record the result under [docs/xp](docs/xp). The current increment is documented in [docs/xp/iteration-08.md](docs/xp/iteration-08.md), with previous increments recorded in [docs/xp/iteration-07.md](docs/xp/iteration-07.md), [docs/xp/iteration-06.md](docs/xp/iteration-06.md), [docs/xp/iteration-05.md](docs/xp/iteration-05.md), [docs/xp/iteration-04.md](docs/xp/iteration-04.md), [docs/xp/iteration-03.md](docs/xp/iteration-03.md), and [docs/xp/iteration-02.md](docs/xp/iteration-02.md).
