@@ -49,7 +49,7 @@ The public homepage currently uses clearly marked, non-production catalogue temp
 - listing brief modal with copy-to-clipboard behavior
 - mobile navigation and responsive layout
 
-The next implementation boundary is the admin-managed data layer: credential verification, signed sessions, login/logout, and a protected category read are covered in [docs/xp/iteration-10.md](docs/xp/iteration-10.md), while validated category/listing mutations, packages, exchange-rate source, and configured contact destinations still need to replace the local sample records before launch.
+The next implementation boundary is the admin-managed data layer: credential verification, signed sessions, login/logout, protected category reads, and validated category creation are covered in [docs/xp/iteration-11.md](docs/xp/iteration-11.md), while category updates/deactivation, listing mutations, packages, exchange-rate source, and configured contact destinations still need to replace the local sample records before launch.
 
 ## Extreme Programming workflow
 

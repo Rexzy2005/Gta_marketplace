@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { listAdminCategories, type AdminCategoryReader } from './admin-category-repository';
+import {
+  createAdminCategory,
+  listAdminCategories,
+  type AdminCategoryCreator,
+  type AdminCategoryReader,
+} from './admin-category-repository';
 
 describe('admin category repository', () => {
   it('reads all categories in administrator order', async () => {
@@ -35,5 +40,36 @@ describe('admin category repository', () => {
       },
     ]);
     expect(calls).toEqual([{ orderBy: { sortOrder: 'asc' } }]);
+  });
+
+  it('creates a category as active', async () => {
+    let receivedData: unknown;
+    const database: AdminCategoryCreator = {
+      category: {
+        async create(args) {
+          receivedData = args.data;
+          return {
+            id: 'category-2',
+            ...args.data,
+            imageUrl: null,
+          };
+        },
+      },
+    };
+
+    await createAdminCategory(database, {
+      name: 'Money drops',
+      slug: 'money-drops',
+      description: null,
+      sortOrder: 2,
+    });
+
+    expect(receivedData).toEqual({
+      name: 'Money drops',
+      slug: 'money-drops',
+      description: null,
+      sortOrder: 2,
+      isActive: true,
+    });
   });
 });
