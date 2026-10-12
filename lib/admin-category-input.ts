@@ -9,6 +9,12 @@ type ParsedCategoryInput =
   | { data: CreateCategoryInput }
   | { error: string };
 
+type CategoryStatusInput = { isActive: boolean };
+
+type ParsedCategoryStatusInput =
+  | { data: CategoryStatusInput }
+  | { error: string };
+
 export function parseCreateCategoryInput(value: unknown): ParsedCategoryInput {
   if (typeof value !== 'object' || value === null) return { error: 'Invalid request' };
 
@@ -39,4 +45,16 @@ export function parseCreateCategoryInput(value: unknown): ParsedCategoryInput {
   }
 
   return { data: { name, slug, description, sortOrder } };
+}
+
+export function parseCategoryStatusInput(value: unknown): ParsedCategoryStatusInput {
+  if (
+    typeof value !== 'object' ||
+    value === null ||
+    typeof (value as { isActive?: unknown }).isActive !== 'boolean'
+  ) {
+    return { error: 'isActive must be boolean' };
+  }
+
+  return { data: { isActive: (value as { isActive: boolean }).isActive } };
 }

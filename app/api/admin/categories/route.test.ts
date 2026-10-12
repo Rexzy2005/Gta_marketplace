@@ -24,6 +24,15 @@ vi.mock('../../../../lib/prisma', () => ({
         sortOrder: 2,
         isActive: true,
       }),
+      update: vi.fn().mockResolvedValue({
+        id: 'category-1',
+        name: 'Modded accounts',
+        slug: 'modded-accounts',
+        description: null,
+        imageUrl: null,
+        sortOrder: 1,
+        isActive: false,
+      }),
     },
   },
 }));

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { parseCreateCategoryInput } from './admin-category-input';
+import { parseCategoryStatusInput, parseCreateCategoryInput } from './admin-category-input';
 
 describe('admin category input', () => {
   it('normalises a valid category payload', () => {
@@ -30,5 +30,13 @@ describe('admin category input', () => {
       slug: 'money-drops',
       description: 'x'.repeat(301),
     })).toEqual({ error: 'Description is too long' });
+  });
+
+  it('accepts only an explicit active status for category updates', () => {
+    expect(parseCategoryStatusInput({ isActive: false })).toEqual({ data: { isActive: false } });
+    expect(parseCategoryStatusInput({ isActive: true })).toEqual({ data: { isActive: true } });
+    expect(parseCategoryStatusInput({ isActive: 'false' })).toEqual({
+      error: 'isActive must be boolean',
+    });
   });
 });
